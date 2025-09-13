@@ -1,5 +1,6 @@
 import argparse as ap
 from getpass import getpass
+from crypto_functions import encrypt_file, decrypt_file
 
 parser = ap.ArgumentParser(
     prog="encryptor",
@@ -30,7 +31,21 @@ def main():
     )
 
     password = getpass(f"Please enter password to {action} {src_file}: ")
-    print(password)
+    print(password)  # TODO: remove after testing
+
+    try:
+        if action == "encrypt":
+            encrypt_file(src=src_file, dest=dest_file, password=password)
+        elif action == "decrypt":
+            decrypt_file(src=src_file, dest=dest_file, password=password)
+        else:
+            raise ValueError("Unknown action")
+    except ValueError as e:
+        print(f"Wrong password or bad action type:{e}")
+    except FileNotFoundError as e:
+        print(f"File not found:{e}")
+    except Exception as e:
+        print(f"An unknown error occurred: {e}")
 
 
 if __name__ == "__main__":
