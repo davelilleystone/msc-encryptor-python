@@ -1,4 +1,5 @@
 import argparse as ap
+from getpass import getpass
 
 parser = ap.ArgumentParser(
     prog="encryptor",
@@ -24,7 +25,12 @@ def main():
     src_file = args.src
     dest_file = args.dest
 
-    print(action, src_file, dest_file)
+    print(
+        f"\nAction: {action}\nSource File: {src_file}\nDestination file: {dest_file}\n"
+    )
+
+    password = getpass(f"Please enter password to {action} {src_file}: ")
+    print(password)
 
 
 if __name__ == "__main__":
