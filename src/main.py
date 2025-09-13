@@ -1,6 +1,11 @@
 import argparse as ap
 from getpass import getpass
 from crypto_functions import encrypt_file, decrypt_file
+from pathlib import Path
+
+DATA_FOLDER = Path(__file__).resolve().parents[1] / "data"
+
+print(DATA_FOLDER)
 
 parser = ap.ArgumentParser(
     prog="encryptor",
@@ -11,7 +16,7 @@ parser = ap.ArgumentParser(
 parser.add_argument(
     "-a",
     "--action",
-    help="Select action to perform - 'encrypt' or 'decrypt'",
+    help="Select action to perform, either 'encrypt' or 'decrypt'",
     choices=["encrypt", "decrypt"],
     required=True,
 )
@@ -35,7 +40,11 @@ def main():
 
     try:
         if action == "encrypt":
-            encrypt_file(src=src_file, dest=dest_file, password=password)
+            encrypt_file(
+                src=DATA_FOLDER / src_file,
+                dest=DATA_FOLDER / dest_file,
+                password=password,
+            )
         elif action == "decrypt":
             decrypt_file(src=src_file, dest=dest_file, password=password)
         else:
