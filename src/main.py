@@ -39,13 +39,15 @@ def main():
         elif action == "decrypt":
             decrypt_file(src=src_file, dest=dest_file, password=password)
         else:
-            raise ValueError("Unknown action")
-    except ValueError as e:
-        print(f"Wrong password or bad action type:{e}")
-    except FileNotFoundError as e:
-        print(f"File not found:{e}")
-    except Exception as e:
-        print(f"An unknown error occurred: {e}")
+            raise Exception
+    except ValueError:
+        print("Error: incorrect password")
+    except PermissionError:
+        print(f"Error: insufficient permissions for file")
+    except FileNotFoundError:
+        print(f"Error: file not found")
+    except Exception:
+        print(f"Error: an unknown error occurred")
 
 
 if __name__ == "__main__":
