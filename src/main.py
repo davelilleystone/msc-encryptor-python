@@ -63,7 +63,7 @@ def main():
     except InvalidTag:
         print("Error: wrong password or corrupted file.")
     except Exception as e:
-        print(f"Error: an unknown error occurred: {e}")
+        print(f"Error: an unknown error occurred:\n {e}")
 
 
 if __name__ == "__main__":
