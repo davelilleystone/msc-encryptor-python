@@ -29,16 +29,16 @@ def decrypt_bytes(data: bytes, password: str) -> bytes:
     ct_plus_tag = data[28:]
     derived_key = derive_key(password=password, salt=salt)
     aesgcm = AESGCM(derived_key)
-    plaintext = aesgcm.decrypt(nonce=nonce, data=ct_plus_tag, associated_data=None)
-    return plaintext
+    decrypted_ct = aesgcm.decrypt(nonce=nonce, data=ct_plus_tag, associated_data=None)
+    return decrypted_ct
 
 
 def encrypt_file(src: str, dest: str, password: str) -> None:
     with open(src, "rb") as file:
         txt = file.read()
     payload = encrypt_bytes(txt, password)
-    with open(dest, "wb") as binary_file:
-        binary_file.write(payload)
+    with open(dest, "wb") as file:
+        file.write(payload)
 
 
 def decrypt_file(src: str, dest: str, password: str) -> None:

@@ -1,6 +1,7 @@
 import argparse as ap
 from getpass import getpass
 from crypto_functions import encrypt_file, decrypt_file
+from cryptography.exceptions import InvalidTag
 from pathlib import Path
 
 DATA_FOLDER = Path(__file__).resolve().parents[1] / "data"
@@ -59,6 +60,8 @@ def main():
         print(f"Error: insufficient permissions for file")
     except FileNotFoundError:
         print(f"Error: file not found")
+    except InvalidTag:
+        print("Error: wrong password or corrupted file.")
     except Exception as e:
         print(f"Error: an unknown error occurred: {e}")
 
