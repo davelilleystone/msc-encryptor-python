@@ -46,7 +46,11 @@ def main():
                 password=password,
             )
         elif action == "decrypt":
-            decrypt_file(src=src_file, dest=dest_file, password=password)
+            decrypt_file(
+                src=DATA_FOLDER / src_file,
+                dest=DATA_FOLDER / dest_file,
+                password=password,
+            )
         else:
             raise Exception
     except ValueError:
@@ -55,8 +59,8 @@ def main():
         print(f"Error: insufficient permissions for file")
     except FileNotFoundError:
         print(f"Error: file not found")
-    except Exception:
-        print(f"Error: an unknown error occurred")
+    except Exception as e:
+        print(f"Error: an unknown error occurred: {e}")
 
 
 if __name__ == "__main__":
