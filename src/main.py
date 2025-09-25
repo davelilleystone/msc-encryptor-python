@@ -35,7 +35,6 @@ def main():
     )
 
     password = getpass(f"Please enter password to {action} {src_file}: ")
-    print(password)  # TODO: remove after testing
 
     try:
         if action == "encrypt":
