@@ -45,3 +45,4 @@ data/*.enc
 
 # Benchmark test files
 *.bin
+*.enc
