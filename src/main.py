@@ -6,8 +6,6 @@ from pathlib import Path
 
 DATA_FOLDER = Path(__file__).resolve().parents[1] / "data"
 
-print(DATA_FOLDER)
-
 parser = ap.ArgumentParser(
     prog="encryptor",
     description="Encrypt / Decrypt files",

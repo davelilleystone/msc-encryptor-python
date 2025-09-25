@@ -42,3 +42,6 @@ coverage.xml
 
 # Data
 data/*.enc
+
+# Benchmark test files
+*.bin
