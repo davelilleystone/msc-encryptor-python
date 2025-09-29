@@ -9,7 +9,7 @@ DATA_FOLDER = Path(__file__).resolve().parents[1] / "data"
 parser = ap.ArgumentParser(
     prog="encryptor",
     description="Encrypt / Decrypt files",
-    epilog="Example:\n  encryptor -a encrypt -s data/sample.txt -d data/sample.enc",
+    epilog="Example:\n  encryptor -a encrypt -s sample.txt -d sample.enc",
     formatter_class=ap.RawDescriptionHelpFormatter,
 )
 parser.add_argument(
@@ -43,12 +43,14 @@ def main():
                 dest=DATA_FOLDER / dest_file,
                 password=password,
             )
+            print(f"{src_file} successfuly encrypted to {dest_file}")
         elif action == "decrypt":
             decrypt_file(
                 src=DATA_FOLDER / src_file,
                 dest=DATA_FOLDER / dest_file,
                 password=password,
             )
+            print(f"{src_file} successfuly decrypted to {dest_file}")
         else:
             raise Exception
     except ValueError:
